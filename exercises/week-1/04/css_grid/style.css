@@ -47,6 +47,8 @@
     background-color: blueviolet; 
     grid-area: f; 
     display: grid; 
+    padding: 5px;
+    margin-top: 35px;
   } 
   #friends p { 
     background-color: rgb(161, 94, 223);
