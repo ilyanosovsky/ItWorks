@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    min-height: 100vh;
+}
+
+div {
+    border: 1px solid black;;
+}
+
+.header {
+    grid-column: 1 / 13;
+    /* grid-row: 1; */
+}
+
+.left-side {
+    grid-column: 1;
+    grid-row: auto;
+}
+
+.main {
+    grid-column: auto;
+}
+
+.right {
+    grid-column: 10 / 13;
+}
