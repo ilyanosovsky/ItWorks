@@ -23,4 +23,42 @@ div {
 
 .chess {
     display: grid;
-    grid-tem
+    grid-template-rows: 1fr 8fr 1fr;
+    grid-column: 3/10;
+    min-height: 100vh;
+}
+
+.board {
+    display: grid;
+    border: 1px solid blue;
+    padding: 1rem;
+    /* grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr); */
+    grid-gap: 0;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    grid-auto-flow: row;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+}
+
+.chess-sq {
+    border: 1px solid blue;
+    height: 50px;
+    width: 50px;
+}
+
+.white {
+    background-color: bisque;
+}
+
+.black {
+    background-color: cadetblue;
+}
+
+.right-side {
+    display: grid;
+    grid-template-rows: 2fr 4fr;
+    grid-column: 10/13;
+}
