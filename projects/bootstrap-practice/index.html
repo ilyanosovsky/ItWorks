@@ -18,9 +18,9 @@
   </head>
   <body>
     <!-- Nav bar | Start-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg bg-dark sticky-top">
+      <div class="container">
+        <a class="nav-link text-light fw-normal" href="#">Frontend Bootcamp</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -32,12 +32,16 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNavAltMarkup"
+        >
           <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="#">Features</a>
-            <a class="nav-link" href="#">Pricing</a>
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            <a class="nav-link text-secondary" aria-current="page" href="#"
+              >What You'll Learn</a
+            >
+            <a class="nav-link text-secondary" href="#">Questions</a>
+            <a class="nav-link text-secondary" href="#">Instructors</a>
           </div>
         </div>
       </div>
@@ -45,37 +49,47 @@
     <!-- Nav Bar | End -->
 
     <!-- Top Container | Start -->
-    <div class="container">
-      <div class="d-flex align-item-center justify-content-between">
-        <div class="inner-container-left">
-          <h1>Become a <span class="text-warning">Web Developer</span></h1>
-          <p class="lead my-4">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptatibus voluptatem totam excepturi nostrum tempora
-            necessitatibus reiciendis debitis possimus. Consectetur, voluptatem
-            id natus culpa sed quas delectus ea nihil odio!
-          </p>
-          <button class="btn btn-primary btn-lg">Join Now</button>
-        </div>
-        <div class="inner-container-right">
-          <img class="img-fluid" src="the_girl.png" alt="girl" />
+    <div class="container-fluid bg-dark">
+      <div class="container">
+        <div class="d-flex align-item-center justify-content-between">
+          <div class="inner-container-left mt-5 mb-5 pt-5">
+            <h2 class="text-light">
+              Become a <span class="text-warning">Web Developer</span>
+            </h2>
+            <p class="lead my-4 text-light fs-6">
+              We focus on teaching our students the fundamentals of the latest
+              and <br />
+              greatest technologies to prepare them for first
+              <span class="text-danger fw-bold">DEV</span> role.
+            </p>
+            <button
+              class="btn btn-primary btn-lg border border-secondary border-3 fs-6"
+            >
+              Start the Enrollment
+            </button>
+          </div>
+          <div class="inner-container-right">
+            <img class="img-fluid" src="the_girl.png" alt="girl" />
+          </div>
         </div>
       </div>
     </div>
     <!-- Top Container | End -->
 
     <!-- Sign Up Form | Start -->
-    <nav class="navbar bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand">Navbar</a>
-        <form class="d-flex" role="search">
+    <nav class="navbar bg-primary">
+      <div class="container mt-4 mb-4">
+        <a class="navbar-brand text-light">Sign Up For Our Newsletter</a>
+        <form class="d-flex" role="email">
           <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
+            class="form-control rounded-0"
+            type="email"
+            placeholder="Enter Email"
+            aria-label="email"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn bg-black text-light rounded-0" type="submit">
+            Button
+          </button>
         </form>
       </div>
     </nav>
