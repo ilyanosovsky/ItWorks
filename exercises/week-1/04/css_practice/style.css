@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#parent {
+    display: inline-block;
+    background-color: blue;
+    width: 300px;
+    height: 300px;
+  }
+  
+  .child {
+    background-color: red;
+  }
+  
+  #child-1 {
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    top: 50px;
+  }
+  
+  #child-2 {
+    position: absolute;
+    height: 300px;
+    width: 20px;
+    left: 50px;
+  }
+
+  .container2 {
+    background-color: blueviolet;
+    width: 300px;
+    height: 150px;
+    border-radius: 5px;
+    position: relative;
+    margin-top: 30px;
+  }
+
+  #money {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+  
+  #time {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .bar {
+    width: 20px;
+    background-color: darkgrey;
+  }
+
+  #bar-1 {
+    height: 20px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+  
+  #bar-2 {
+    height: 70px;
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+  }
+  
+  #bar-3 {
+    height: 100px;
+    position: absolute;
+    bottom: 10px;
+    left: 90px;
+  }
+  
+  #bar-4 {
+    height: 85px;
+    position: absolute;
+    bottom: 10px;
+    left: 130px;
+  }
+  
+  #bar-5 {
+    height: 75px;
+    position: absolute;
+    bottom: 10px;
+    left: 170px;
+  }
+  
+  #bar-6 {
+    height: 50px;
+    position: absolute;
+    bottom: 10px;
+    left: 210px;
+  }
+
+  .magnet {
+    background-color: red;
+    width: 400px;
+    height:250px;
+    border-radius: 5%;
+    bottom: 10px;
+    position: relative;
+    margin-top: 50px;
+  }
+
+  .silver-edges {
+    background-color: grey;
+    height: 85px;
+    width: 85px;
+    border-top-left-radius: 7%;
+    border-top-right-radius: 7%;
+    border: 2px solid grey;
+  }
+
+  #edge-1 {
+    position: absolute;
+    right: 0;
+  }
+
+  #white-space {
+    width: 230px;
+    height: 190px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 85px;
+    border-bottom-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+  }
+
+  .chocolate {
+    background-color: black;
+    width: 270px;
+    height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .part {
+    background-color: #66320E;
+    width: 60px;
+    height: 50px;
+    margin: 3px;
+  }
+
+  #middle {
+    background-color: red;
+    width: 100%;
+    height: 3px;
+
+  }
