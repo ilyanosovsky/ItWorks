@@ -75,6 +75,57 @@ const getSummary = (person) => {
   return summary;
 };
 
-const summary = getSummary(people_info[2]);
+const summary = () => {
+  for (i = 0; i < people_info.length; i++) {
+    console.log(getSummary(people_info[i]));
+  }
+};
 
-console.log(summary);
+summary();
+
+const story =
+  "In the beginning there was light. Then there were wolves. Finally there was a big fire. Ultimately, Shelob the wolf-master put out the fire with her feet. But until then, the fire caused one heck of a lot of damage.";
+const specialChars = [",", ".", "'", '"', "?", "!", ";"];
+const wordCounts = {};
+
+const getCleaned = (sentence) => {
+  let cleanedSentence = "";
+  for (let i = 0; i < sentence.length; i++) {
+    const char = sentence[i];
+    // Check if the character is not in the list of special characters
+    if (!specialChars.includes(char)) {
+      cleanedSentence += char;
+    }
+  }
+  return cleanedSentence;
+};
+
+const getCounter = (sentence) => {
+  const words = sentence.split(/\s+/);
+  // Loop through the array of words
+  words.forEach((word) => {
+    // Convert the word to lowercase to make counting case-insensitive
+    const lowercaseWord = word.toLowerCase();
+    // Check if the word already exists in the object
+    if (wordCounts[lowercaseWord]) {
+      // If it does, increment its count
+      wordCounts[lowercaseWord]++;
+    } else {
+      // If it doesn't, add it to the object with a count of 1
+      wordCounts[lowercaseWord] = 1;
+    }
+  });
+  return wordCounts;
+};
+
+const getResult = (story) => {
+    const cleanedSent = getCleaned(story);
+
+    getCounter(cleanedSent);
+
+    for (let word in wordCounts) {
+        console.log(`${word}: ${wordCounts[word]}`);
+    }
+};
+
+getResult(story);
