@@ -11,12 +11,17 @@
 // 90-100 is an “A
 
 const numScore = (score) => {
-    return score <= 64
-      ? 'F' : score <= 69
-        ? 'D' : score <=79
-          ? 'C' : score <= 89
-            ? 'B' : score <= 100
-              ? 'A' : 'cannot define result'
-  }
+  return score <= 64
+    ? "F"
+    : score <= 69
+    ? "D"
+    : score <= 79
+    ? "C"
+    : score <= 89
+    ? "B"
+    : score <= 100
+    ? "A"
+    : "cannot define result";
+};
 
 console.log(numScore(51));
