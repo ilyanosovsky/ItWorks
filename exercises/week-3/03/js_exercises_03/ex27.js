@@ -16,3 +16,24 @@
 // Extra:
 // return the letter with the most occurrences as well
 
+const array = ["Hello", "Good Day", "Your Welcome", "hotdog", "hamburgers"];
+
+const countLetters = (array) => {
+  const result = {};
+  for (let i = 0; i < array.length; i++) {
+    const lowerArr = array[i].toLowerCase();
+    for (let j = 0; j < lowerArr.length; j++) {
+      const char = lowerArr[j];
+      if (/[a-z]/i.test(char)) {
+        if (result[char]) {
+          result[char]++;
+        } else {
+          result[char] = 1;
+        }
+      }
+    }
+  }
+  return result;
+};
+
+console.log(countLetters(array));
