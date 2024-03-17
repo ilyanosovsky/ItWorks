@@ -6,7 +6,7 @@
 // your eyes but to use the debugging tools we've learned!
 // What is wrong with this code?
 // 1. First, find the line that contains the problem. Write it down.
-// line 24 and line 22
+// line 30 and line 23
 
 // 2. Which debug method did you use to find the bug?
 // console log in browser
