@@ -3,7 +3,7 @@
 // Instructions
 // For each of the questions below, answer the questions with this
 // array:
-let people = ["Greg", "Mary", "Devon", "James"];
+const people = ["Greg", "Mary", "Devon", "James"];
 
 // 1. Using a loop, iterate through this array and console.log all
 // of the people.
