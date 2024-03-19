@@ -39,9 +39,6 @@ const handlePaste = (event) => {
   const clipboardData = event.clipboardData || window.clipboardData;
   const pastedData = clipboardData.getData("text");
 
-  // Clear inputs before pasting
-  inputs.forEach((input) => (input.value = ""));
-
   if (pastedData.length <= inputs.length) {
     for (let i = 0; i < pastedData.length; i++) {
       inputs[i].value = pastedData[i];
@@ -49,8 +46,9 @@ const handlePaste = (event) => {
       comment.textContent = "Pasted data is shorter than available inputs!";
     }
     if (pastedData.length === inputs.length) {
-      document.getElementById("verificationForm").submit();
       console.log("submit");
+      document.getElementById("verificationForm").submit();
+      alert("Form was submitted successfully!")
     }
   } else {
     // Handle case where pasted data is longer than available inputs
