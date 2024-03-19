@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+    font-weight: bold;
+}
+
+.editFont {
+    margin-top: 3rem;
+    font-size: 40px;
+}
+
+button {
+    height: 3rem;
+    width: 3rem;
+    margin: 2rem;
+}
