@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid black;
+    background-color: rgb(217, 217, 217);
+    border-radius: 20px;
+    padding: 3rem;
+    height: 200px;
+    width: 300px;
+}
+
+.color-input {
+    margin: 1rem 0 1rem 0;
+}
+
+.submit-btn {
+    cursor: pointer;
+}
