@@ -63,7 +63,6 @@ const resultOnlyUnique = getOnlyUnique(contacts.results);
 
 console.log("only unique task result ->", resultOnlyUnique);
 
-
 // Write a function that concatenates the first and last name of each contact into a new array of full names.
 
 const getFullName = (contacts) => {
@@ -77,8 +76,25 @@ const resultFullName = getFullName(contacts.results);
 
 console.log("get full name task result ->", resultFullName);
 
-
-// Looping Through Arrays 
+// Looping Through Arrays
 // Write a loop that iterates through the array and logs each contact's email to the console.
 
-contacts.results.forEach(el => console.log("get emails task result ->", el.email));
+contacts.results.forEach((el) =>
+  console.log("get emails task result ->", el.email)
+);
+
+// Write a function that takes an ID as a parameter and returns the contact with that ID.
+
+const getContactById = (id) => {
+  for (let i = 0; i < contacts.results.length; i++) {
+    // Check if the ID of the current contact matches the provided ID
+    if (contacts.results[i].id.value === id) {
+      return contacts.results[i];
+    }
+  }
+  return null;
+};
+
+const resultContactById = getContactById("204012150375");
+
+console.log("contact by id task result ->", resultContactById);
