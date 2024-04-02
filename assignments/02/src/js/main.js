@@ -22,5 +22,17 @@ const sortedByLastName = (contacts) => {
   return sortedContacts;
 };
 
-console.log(sortedByLastName(contacts.results));
+console.log("sorted task result ->", sortedByLastName(contacts.results));
 
+
+// Write a function to return the array of contacts in reverse order. Do not use the built-in reverse() method.
+
+const sortedReverseByLastName = (contacts) => {
+    return contacts.reduce((acc, curr) => {
+        // Add each contact to the beginning of the new array
+        acc.unshift(curr);
+        return acc;
+      }, []);
+  };
+  
+  console.log("sorted reverse task result ->", sortedReverseByLastName(contacts.results));
