@@ -111,6 +111,22 @@ const countByCountry = (country) => {
   return null;
 };
 
-const resultCounterByCountry = countByCountry('United States');
+const resultCounterByCountry = countByCountry("United States");
 
 console.log("number of contacts with US ->", resultCounterByCountry);
+
+// Write a function that returns a new array of contacts that are within a given age range, e.g., 25 to 35 years old.
+
+const getAgeRange = (contacts) => {
+  let newArr = [];
+  for (let i = 0; i < contacts.length; i++) {
+    if (contacts[i].dob.age >= 25 && contacts[i].dob.age <= 35) {
+      newArr.push(contacts[i]);
+    }
+  }
+  return newArr;
+};
+
+const resultGetAgeRange = getAgeRange(contacts.results);
+
+console.log("age range 25 - 35 result ->", resultGetAgeRange);
