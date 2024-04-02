@@ -49,3 +49,15 @@ const firstFive = () => {
 const resultFirstFive = firstFive()
 
 console.log("first five task result ->",resultFirstFive);
+
+
+// Create a function that returns an array of all unique first names. No duplicates should be present.
+
+const onlyUnique = (contacts) => {
+    const unique = contacts.filter((value, index, array) => array.indexOf(value) === index);
+    return unique;
+}
+
+const resultOnlyUnique = onlyUnique(contacts.results);
+
+console.log("only unique task result ->", resultOnlyUnique);
