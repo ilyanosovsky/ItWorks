@@ -76,3 +76,9 @@ const getFullName = (contacts) => {
 const resultFullName = getFullName(contacts.results);
 
 console.log("get full name task result ->", resultFullName);
+
+
+// Looping Through Arrays 
+// Write a loop that iterates through the array and logs each contact's email to the console.
+
+contacts.results.forEach(el => console.log("get emails task result ->", el.email));
