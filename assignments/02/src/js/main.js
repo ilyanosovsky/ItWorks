@@ -98,3 +98,19 @@ const getContactById = (id) => {
 const resultContactById = getContactById("204012150375");
 
 console.log("contact by id task result ->", resultContactById);
+
+// Create a function that counts how many contacts are from a specific country. The country should be a parameter of the function.
+
+const countByCountry = (country) => {
+  for (let i = 0; i < contacts.results.length; i++) {
+    if (contacts.results[i].location.country === country) {
+      i++;
+      return i;
+    }
+  }
+  return null;
+};
+
+const resultCounterByCountry = countByCountry('United States');
+
+console.log("number of contacts with US ->", resultCounterByCountry);
