@@ -42,22 +42,37 @@ console.log("sorted reverse task result ->", resultReverseSortedByLastName);
 
 //   Write a function that returns the first 5 contacts from the sorted list (by last name).
 
-const firstFive = () => {
-  return resultSortedByLastName.slice(0,5);
+const getFirstFive = () => {
+  return resultSortedByLastName.slice(0, 5);
 };
 
-const resultFirstFive = firstFive()
+const resultFirstFive = getFirstFive();
 
-console.log("first five task result ->",resultFirstFive);
-
+console.log("first five task result ->", resultFirstFive);
 
 // Create a function that returns an array of all unique first names. No duplicates should be present.
 
-const onlyUnique = (contacts) => {
-    const unique = contacts.filter((value, index, array) => array.indexOf(value) === index);
-    return unique;
-}
+const getOnlyUnique = (contacts) => {
+  const unique = contacts.filter(
+    (value, index, array) => array.indexOf(value) === index
+  );
+  return unique;
+};
 
-const resultOnlyUnique = onlyUnique(contacts.results);
+const resultOnlyUnique = getOnlyUnique(contacts.results);
 
 console.log("only unique task result ->", resultOnlyUnique);
+
+
+// Write a function that concatenates the first and last name of each contact into a new array of full names.
+
+const getFullName = (contacts) => {
+  const fullName = contacts.map((contact) => {
+    return contact.name.first + " " + contact.name.last;
+  });
+  return fullName;
+};
+
+const resultFullName = getFullName(contacts.results);
+
+console.log("get full name task result ->", resultFullName);
