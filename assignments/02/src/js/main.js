@@ -72,6 +72,12 @@ const getFullName = (contacts) => {
   return fullName;
 };
 
+const getFullNames2 = (contacts) => {
+  return contacts.map((contact) => Object.values(contact.name).join(" "));
+};
+
+console.log("results -----> ", getFullNames2(contacts.results));
+
 const resultFullName = getFullName(contacts.results);
 
 console.log("get full name task result ->", resultFullName);
@@ -110,6 +116,16 @@ const countByCountry = (country) => {
   }
   return null;
 };
+
+const countCountry = (contacts) => {
+    return contacts.reduce((acc, contact) => {
+      if (!acc[contact.location.country]) {
+        acc[contact.location.country] = 0;
+      }
+      acc[contact.location.country]++;
+      return acc;
+    }, {});
+  };
 
 const resultCounterByCountry = countByCountry("United States");
 
@@ -182,4 +198,3 @@ const displayResults = (contacts) => {
   });
   resultsDiv.appendChild(ul);
 };
-
