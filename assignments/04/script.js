@@ -37,11 +37,9 @@ const solveStringManipulation = new Promise((resolve, reject) => {
     return str.toUpperCase();
   })
   .then((str) => {
-    console.log(str);
     return str.split("").reverse().join("");
   })
   .then((str) => {
-    console.log(str);
     return str + " - finished";
   })
   .then((str) => {
@@ -50,3 +48,26 @@ const solveStringManipulation = new Promise((resolve, reject) => {
   .catch((error) => {
     console.error("Error occurred:", error);
   });
+
+//   Exercise 3: Array Filtering and Mapping
+//   Write a function compareToNum that takes a number as an argument and returns a Promise
+//   that tests if the value is less than or greater than the value 10 (reject otherwise)
+
+const compareToNum = ({ num, isAboveNum }) => {
+  return new Promise((resolve, reject) => {
+    if (isAboveNum < num) {
+      reject("Number is less than 10");
+    } else if (isAboveNum > num) {
+      resolve("Number is greater than 10");
+    } else {
+      reject("Number is equal to 10");
+    }
+  });
+};
+
+compareToNum({ num: 10, isAboveNum: 5 }) //will reject
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
+compareToNum({ num: 10, isAboveNum: 12 }) //will resolve
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error));
