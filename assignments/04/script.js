@@ -71,3 +71,25 @@ compareToNum({ num: 10, isAboveNum: 5 }) //will reject
 compareToNum({ num: 10, isAboveNum: 12 }) //will resolve
   .then((result) => console.log(result))
   .catch((error) => console.log(error));
+
+//   Exercise 4: Delayed Greetings
+//   Simulate a delayed greeting with promises.
+//   First, wait 2 seconds, then log "Hello", wait another second, and log "World!".
+//   Each step should be done in a separate .then().
+
+const getGreetings = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Hello");
+  }, 2000); // Wait 2 seconds
+})
+  .then((message) => {
+    console.log(message);
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve("World!");
+      }, 1000); // Wait 1 second after logging "Hello"
+    });
+  })
+  .then((message) => {
+    console.log(message);
+  });
