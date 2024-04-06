@@ -111,3 +111,33 @@ const handleError = new Promise((resolve, reject) => {
     console.log("Invalid JSON");
   }
 });
+
+// Make an async await version
+// Exercise 6: Promise all
+// Create "resolveImmediate" that resolves immediately to a number
+// Create "resolveDelayed" that resolves to a number after 2 seconds
+
+// Function to resolve immediately to a number
+function resolveImmediate() {
+  return Promise.resolve(25);
+}
+
+// Function to resolve to a number after 2 seconds
+function resolveDelayed() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(17);
+    }, 2000);
+  });
+}
+
+async function combine(prmX, prmY) {
+  return Promise.all([prmX, prmY]).then((values) => {
+    return values[0] + values[1];
+  });
+}
+// `fetchX()` should return a promise that is resolved to 25 immediately
+// and `fetchY()` should return a promise that is resolved after 2 seconds to 17
+combine(resolveImmediate(), resolveDelayed()).then((sum) => {
+  console.log(sum);
+});
