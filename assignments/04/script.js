@@ -93,3 +93,21 @@ const getGreetings = new Promise((resolve, reject) => {
   .then((message) => {
     console.log(message);
   });
+
+//   Exercise 5: Error Handling
+//   Create a promise chain that attempts to parse JSON data.
+//   Use a try/catch block within a .then() method to handle JSON parsing errors.
+//   If successful, log the parsed object; if an error occurs, log "Invalid JSON".
+
+const jsonData = '{"name": "John", "age": 30}'; // Example JSON data
+
+const handleError = new Promise((resolve, reject) => {
+  resolve(jsonData);
+}).then((data) => {
+  try {
+    const parsedData = JSON.parse(data);
+    console.log("Parsed JSON:", parsedData);
+  } catch (error) {
+    console.log("Invalid JSON");
+  }
+});
