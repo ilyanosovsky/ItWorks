@@ -6,23 +6,34 @@ console.log(contacts);
 
 // Write a function that takes the array of contacts and returns a new array sorted by last name.
 
-const sortedByLastName = (contacts) => {
+// const sortedByLastName = (contacts) => {
+//   const sortedContacts = contacts.slice().sort((a, b) => {
+//     const lastNameA = a.name.last.toLowerCase();
+//     const lastNameB = b.name.last.toLowerCase();
+
+//     if (lastNameA < lastNameB) {
+//       return -1; // lastNameA comes before lastNameB
+//     }
+//     if (lastNameA > lastNameB) {
+//       return 1; // lastNameA comes after lastNameB
+//     }
+//     return 0; // names are equal
+//   });
+//   return sortedContacts;
+// };
+
+const sortedByLastName2 = (contacts) => {
   const sortedContacts = contacts.slice().sort((a, b) => {
     const lastNameA = a.name.last.toLowerCase();
     const lastNameB = b.name.last.toLowerCase();
 
-    if (lastNameA < lastNameB) {
-      return -1; // lastNameA comes before lastNameB
-    }
-    if (lastNameA > lastNameB) {
-      return 1; // lastNameA comes after lastNameB
-    }
-    return 0; // names are equal
+    if (lastNameA == lastNameB) return 0;
+    return lastNameA > lastNameB ? 1 : -1;
   });
   return sortedContacts;
 };
 
-const resultSortedByLastName = sortedByLastName(contacts.results);
+const resultSortedByLastName = sortedByLastName2(contacts.results);
 
 console.log("sorted task result ->", resultSortedByLastName);
 
@@ -133,7 +144,10 @@ function countContactsFromCountry(contacts, country) {
   }, 0);
 }
 
-console.log("number of contacts with US ->", countContactsFromCountry(contacts.results, "United States"));
+console.log(
+  "number of contacts with US ->",
+  countContactsFromCountry(contacts.results, "United States")
+);
 
 // const resultCounterByCountry = countByCountry("United States");
 
