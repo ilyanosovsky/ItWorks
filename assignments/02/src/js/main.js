@@ -107,29 +107,37 @@ console.log("contact by id task result ->", resultContactById);
 
 // Create a function that counts how many contacts are from a specific country. The country should be a parameter of the function.
 
-const countByCountry = (country) => {
-  for (let i = 0; i < contacts.results.length; i++) {
-    if (contacts.results[i].location.country === country) {
-      i++;
-      return i;
-    }
-  }
-  return null;
-};
+// const countByCountry = (country) => {
+//   for (let i = 0; i < contacts.results.length; i++) {
+//     if (contacts.results[i].location.country === country) {
+//       i++;
+//       return i;
+//     }
+//   }
+//   return null;
+// };
 
-const countCountry = (contacts) => {
-    return contacts.reduce((acc, contact) => {
-      if (!acc[contact.location.country]) {
-        acc[contact.location.country] = 0;
-      }
-      acc[contact.location.country]++;
-      return acc;
-    }, {});
-  };
+// const countCountry = (contacts) => {
+//     return contacts.reduce((acc, contact) => {
+//       if (!acc[contact.location.country]) {
+//         acc[contact.location.country] = 0;
+//       }
+//       acc[contact.location.country]++;
+//       return acc;
+//     }, {});
+//   };
 
-const resultCounterByCountry = countByCountry("United States");
+function countContactsFromCountry(contacts, country) {
+  return contacts.reduce((count, contact) => {
+    return contact.location.country === country ? count + 1 : count;
+  }, 0);
+}
 
-console.log("number of contacts with US ->", resultCounterByCountry);
+console.log("number of contacts with US ->", countContactsFromCountry(contacts.results, "United States"));
+
+// const resultCounterByCountry = countByCountry("United States");
+
+// console.log("number of contacts with US ->", resultCounterByCountry);
 
 // Write a function that returns a new array of contacts that are within a given age range, e.g., 25 to 35 years old.
 
