@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import FiveDaysForecast from "./components/FiveDaysForecast";
 import CurrentWeather from "./components/CurrentWeather";
 import Favorites from "./components/Favorites";
+import AutoCompleteText from "./components/AutoCompleteText";
 
 export const AppContext = createContext(null);
 
@@ -34,6 +35,7 @@ function App() {
               }}
             >
               <div className="App">
+              <AutoCompleteText />
                 <CurrentWeather />
                 <FiveDaysForecast />
               </div>
