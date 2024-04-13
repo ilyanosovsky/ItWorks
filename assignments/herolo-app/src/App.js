@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import FiveDaysForecast from "./components/FiveDaysForecast";
 import CurrentWeather from "./components/CurrentWeather";
+import Favorites from "./components/Favorites";
 
 export const AppContext = createContext(null);
 
@@ -36,6 +37,25 @@ function App() {
                 <CurrentWeather />
                 <FiveDaysForecast />
               </div>
+            </AppContext.Provider>
+          }
+        />
+        <Route
+          path="/favorites"
+          element={
+            <AppContext.Provider
+              value={{
+                city,
+                setCity,
+                cityKey,
+                setCityKey,
+                metric,
+                setMetric,
+                country,
+                setCountry,
+              }}
+            >
+              <Favorites />
             </AppContext.Provider>
           }
         />

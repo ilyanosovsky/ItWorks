@@ -4,11 +4,20 @@ import { getFromLocalStorage, addToLocalStorage } from "../helpers/storage";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
+const FAVORITE = getFromLocalStorage("favorite");
 
 const CurrentWeather = (props) => {
   const [currentWeather, setCurrentWeather] = useState([]);
+  const [favorite, setFavorite] = useState([]);
   const { city, cityKey, metric, country, setCity, setCountry } =
     useContext(AppContext);
+
+  useEffect(() => {
+    const getFavorites = async () => {
+      await setFavorite(FAVORITE);
+    };
+    getFavorites();
+  }, [props.country, props.city]);
 
   useEffect(() => {
     getCurrentWeather(props.cityKey || cityKey);
@@ -25,6 +34,26 @@ const CurrentWeather = (props) => {
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const addToFavorite = async () => {
+    favorite.push({ city, country, cityKey });
+    let newFavorite = [...favorite];
+    await addToLocalStorage("favorite", newFavorite);
+    await setFavorite(newFavorite);
+  };
+
+  const removeFromFavorite = async () => {
+    let index = favorite.findIndex((item) => item.cityKey == cityKey);
+    favorite.splice(index, 1);
+    let newFavorite = [...favorite];
+    await addToLocalStorage("favorite", newFavorite);
+    await setFavorite(newFavorite);
+  };
+
+  const isCityInFavorite = () => {
+    let index = favorite.findIndex((item) => item.cityKey == cityKey);
+    return index === -1 ? false : true;
   };
 
   if (currentWeather.length === 0) return null;
@@ -50,7 +79,15 @@ const CurrentWeather = (props) => {
           />
         }
       </p>
-      
+      {!props.cityKey ? (
+        isCityInFavorite() ? (
+          <button onClick={() => removeFromFavorite()}>
+            Remove From Favorite
+          </button>
+        ) : (
+          <button onClick={() => addToFavorite()}>Add To Favorite</button>
+        )
+      ) : null}
     </div>
   );
 };
