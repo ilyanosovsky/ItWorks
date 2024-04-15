@@ -9,3 +9,5 @@ router.post("/", addBook);
 // READ
 router.get('/', getAllBooks);
 router.get('/:id', getBook);
+
+export default router;

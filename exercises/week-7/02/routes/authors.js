@@ -9,3 +9,5 @@ router.get("/", getAllAuthors);
 
 // CREATE
 router.post("/", addAuthor);
+
+export default router;
