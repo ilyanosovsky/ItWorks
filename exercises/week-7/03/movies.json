@@ -1,0 +1,63 @@
+[
+    {
+      "title": "The Shawshank Redemption",
+      "genre": "Drama",
+      "year": "1994",
+      "actors": []
+    },
+    {
+      "title": "The Godfather",
+      "genre": "Crime",
+      "year": "1972",
+      "actors": []
+    },
+    {
+      "title": "The Dark Knight",
+      "genre": "Action",
+      "year": "2008",
+      "actors": []
+    },
+    {
+      "title": "Pulp Fiction",
+      "genre": "Crime",
+      "year": "1994",
+      "actors": []
+    },
+    {
+      "title": "Schindler's List",
+      "genre": "Biography",
+      "year": "1993",
+      "actors": []
+    },
+    {
+      "title": "The Lord of the Rings: The Return of the King",
+      "genre": "Adventure",
+      "year": "2003",
+      "actors": []
+    },
+    {
+      "title": "Fight Club",
+      "genre": "Drama",
+      "year": "1999",
+      "actors": []
+    },
+    {
+      "title": "Forrest Gump",
+      "genre": "Drama",
+      "year": "1994",
+      "actors": []
+    },
+    {
+      "title": "Inception",
+      "genre": "Action",
+      "year": "2010",
+      "actors": []
+    },
+    {
+      "title": "The Matrix",
+      "genre": "Action",
+      "year": "1999",
+      "actors": []
+    }
+  ]
+  
