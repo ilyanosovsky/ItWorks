@@ -1,22 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [name, setName] = useState("");
+  const [greeting, setGreeting] = useState("Hello Guest");
+
+  const changeHandler = (event) => {
+    setName(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    setGreeting(`Hello ${name}`);
+    setName("");
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>{greeting}</h1>
+        <form onSubmit={submitHandler}>
+          <input
+            placeholder="type your name"
+            type="text"
+            onChange={changeHandler}
+          />
+          <button type="submit">Submit form</button>
+        </form>
       </header>
     </div>
   );
