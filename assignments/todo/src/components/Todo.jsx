@@ -20,6 +20,7 @@ export const Todo = () => {
       title,
       id: uuidv4(),
       done: false,
+      createdAt: new Date().toISOString(),
     };
     setTodos([...todos, newTodo]);
   };

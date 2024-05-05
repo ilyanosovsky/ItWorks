@@ -3,7 +3,7 @@ export const TodoList = (props) => {
     <ul>
       {props.todos.map((todo) => (
         <li key={todo.id}>
-          <span>{todo.title}</span>
+          <span>{todo.title} {new Date(todo.createdAt).toLocaleString()}</span>
         </li>
       ))}
     </ul>
