@@ -47,12 +47,7 @@ export const Todo = () => {
     <>
       <Form addTodo={submitHandler} />
       {todos.length ? <TodoList todos={todos} /> : <p>No todos</p>}
-      <button
-        style={{ color: "black", backgroundColor: "Highlight" }}
-        onClick={clearTodos}
-      >
-        delete all
-      </button>
+      <button onClick={clearTodos}>delete all</button>
     </>
   );
 };

@@ -10,7 +10,9 @@ export const Form = (props) => {
       onSubmit={props.addTodo}
     >
       <input type="text" name="title" />
-      <button>Add ToDo</button>
+      <button style={{ color: "black", backgroundColor: "Highlight" }}>
+        Add ToDo
+      </button>
     </form>
   );
 };
