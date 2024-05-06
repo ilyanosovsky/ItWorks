@@ -1,0 +1,106 @@
+/* #container{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: 
+    "h h f f s s"
+    "h h f f s s"
+    "h h . . s s"
+    "h h m m s s"
+    "h h m m s s"
+}
+
+.head{
+    grid-area: h;
+    background-color: antiquewhite;
+}
+
+.side-nav{
+    grid-area: s;
+    background-color: aqua;
+}
+
+.main{
+    grid-area: m;
+    background-color: blue;
+}
+
+.foot{
+    grid-area: f;
+    background-color: blueviolet;
+} */
+
+
+
+#chat { 
+    display: grid; 
+    height: 100vh; 
+    grid-template-columns: 1fr 4fr; 
+    grid-template-rows: 15fr; 
+    grid-template-areas: 
+      "f c" 
+      "f i"; 
+  } 
+   
+  #friends { 
+    background-color: blueviolet; 
+    grid-area: f; 
+    display: grid; 
+    padding: 5px;
+  } 
+  #friends p { 
+    background-color: rgb(161, 94, 223);
+    height: 30px;
+    margin: 3px;
+    border-radius: 5px;
+    padding: 3px; 
+  } 
+   
+  #chatbox { 
+    grid-area: c; 
+    display: grid; 
+    background-color: rgb(235, 235, 235);
+    align-content: space-around;
+  } 
+
+  .text-container {
+    height: 40px;
+    padding: 8px;
+    margin: 8px;
+  }
+   
+  .text-container p { 
+    display: inline-block; 
+  } 
+
+  .left {
+    background-color: rgb(199, 196, 196);
+  }
+
+  .right { 
+    text-align: right; 
+    background-color: rgb(109, 236, 89);
+  } 
+   
+  #input { 
+    grid-area: i; 
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+  } 
+   
+  #input div { 
+    display: grid;
+    height: 40px;
+    text-align: center;
+    align-items: center;
+    background-color: blueviolet;
+    color: aliceblue;
+  } 
+  .text { 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .time {
+    font-size: xx-small;
+  }
