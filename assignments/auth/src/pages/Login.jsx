@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import mockFetchUserService from '../utils/mockFetchUserService';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import mockFetchUserService from "../utils/mockFetchUserService";
 
 const Login = ({ login }) => {
   const [errorMessage, setErrorMessage] = useState("");
