@@ -1,7 +1,7 @@
 import "./App.css";
 import Controls from "./components/Controls";
 import Desk from "./components/Desk";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const STATUSES = {
   inProgress: "In Progress",
@@ -29,11 +29,31 @@ const shuffleDeck = (deck) => {
   return deck.sort(() => Math.random() - 0.5);
 };
 
+function countDeck(deck) {
+  return deck.reduce((acc, card) => acc + card.value, 0);
+}
+
 const App = () => {
   const [deck, setDeck] = useState(shuffleDeck(buildDeck()));
   const [deckPlayer, setDeckPlayer] = useState([]);
   const [deckDealer, setDeckDealer] = useState([]);
   const [gameStatus, setGameStatus] = useState(STATUSES.inProgress);
+
+  useEffect(() => {
+    const playerHand = countDeck(deckPlayer);
+    const dealerHand = countDeck(deckDealer);
+    if (playerHand == 21) setGameStatus(STATUSES.playerWin);
+    else if (playerHand > 21) setGameStatus(STATUSES.playerLoose);
+    else if (gameStatus == STATUSES.stopped) {
+      // Stop Buttom pressed
+      // playerHand < 21
+      if (dealerHand > 21 || playerHand > dealerHand)
+        setGameStatus(STATUSES.playerWin);
+      else setGameStatus(STATUSES.playerLoose);
+    }
+    console.log("player", deckPlayer, countDeck(deckPlayer));
+    console.log("dealer", deckDealer, countDeck(deckDealer));
+  });
 
   function handleDeal() {
     if (gameStatus != STATUSES.inProgress) return;
@@ -52,7 +72,7 @@ const App = () => {
   }
   return (
     <>
-      <Desk status={gameStatus} />
+      <Desk status={gameStatus} deckPlayer={deckPlayer} deckDealer={deckDealer}/>
       <Controls handleDeal={handleDeal} handleStop={handleStop} />
     </>
   );
