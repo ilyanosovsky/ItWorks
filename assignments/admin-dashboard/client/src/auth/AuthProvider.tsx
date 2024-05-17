@@ -2,12 +2,14 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AuthContextType {
   token: string | null;
-  login: (token: string) => void;
+  username: string | null;
+  login: (token: string, username: string) => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
   token: null,
+  username: null,
   login: () => {},
   logout: () => {}
 });
@@ -19,20 +21,30 @@ interface AuthProviderProps {
   }
 
   export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const [token, setToken] = useState<string | null>(null);
+    const [token, setToken] = useState<string | null>(
+        localStorage.getItem('token') || null
+      );
 
-  const login = (token: string) => {
-    setToken(token);
-    // Optionally, you can save the token to localStorage for persistence
-  };
+      const [username, setUsername] = useState<string | null>(
+        localStorage.getItem('username') || null
+      );
 
-  const logout = () => {
-    setToken(null);
-    // Optionally, you can clear the token from localStorage
-  };
+      const login = (token: string, username: string) => {
+        setToken(token);
+        setUsername(username);
+        localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
+      };
+
+      const logout = () => {
+        setToken(null);
+        setUsername(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+      };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, username, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

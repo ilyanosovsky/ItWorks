@@ -6,8 +6,8 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout><HomePage/></Layout>} />
-      <Route path="/login" element={<span>LOGIN PAGE</span>} />
-      <Route path="/view-users" element={<span>View Users</span>} />
+      <Route path="/dashboard" element={<Layout><span>Dashboard</span></Layout>} />
+      <Route path="/view-users" element={<Layout><span>View Users</span></Layout>} />
       <Route path="/create-user" element={<span>Create User</span>} />
       <Route path="/edit-user" element={<span>Edit User</span>} />
       <Route path="/logout" element={<span>LOGOUT</span>} />

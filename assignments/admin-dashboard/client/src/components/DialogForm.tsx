@@ -34,7 +34,7 @@ const DialogForm: React.FC<DialogFormProps> = ({ onLogin }) => {
           variant="ghost"
           className="font-bold hover:text-orange-500 hover:bg-white"
         >
-          Login
+          Log In
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -58,7 +58,7 @@ const DialogForm: React.FC<DialogFormProps> = ({ onLogin }) => {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Login</Button>
+            <Button type="submit">Log In</Button>
           </DialogFooter>
         </form>
       </DialogContent>

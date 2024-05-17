@@ -1,25 +1,37 @@
-import { loginAdmin } from '@/api/AdminApi';
-import React, { useState } from 'react'
+import React from 'react';
+import DialogForm from './DialogForm';
+import { loginAdmin } from '../api/AdminApi';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthProvider';
 
-const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState<string | null>(null);
-
-    const handleLogin = async () => {
-        try {
-          const token = await loginAdmin(username, password);
-          // Handle successful login, e.g., save token to localStorage and redirect
-          console.log('Login successful. Token:', token);
-        } catch (error) {
-          setError(error.message);
-        }
-      };
-  return (
-    <div>
-      
-    </div>
-  )
+interface LoginProps {
+  onLoginSuccess: () => void;
 }
 
-export default Login
+const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogin = async (username: string, password: string) => {
+    try {
+      const token = await loginAdmin(username, password);
+      login(token, username);
+      console.log('Login successful! with token ->', token);
+      console.log('username ->', username);
+      onLoginSuccess();
+      navigate('/dashboard');
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Login failed:', error.message);
+      } else {
+        console.error('Login failed:', error);
+      }
+    }
+  };
+
+  return (
+    <DialogForm onLogin={handleLogin} />
+  );
+};
+
+export default Login;
