@@ -4,7 +4,7 @@ import User from "../models/User";
 export const UserController = {
   async createUser(req: Request, res: Response) {
     try {
-      const { firstName, lastName, email, password, dob } = req.body;
+      const { firstName, lastName, email, password, role, dob } = req.body;
 
       console.log("Received request to create user:", req.body);
 
@@ -31,6 +31,7 @@ export const UserController = {
         lastName,
         email,
         password,
+        role,
         dob,
       });
 
@@ -78,11 +79,11 @@ export const UserController = {
   async updateUser(req: Request, res: Response) {
     try {
       const userId = req.params.userId;
-      const { firstName, lastName, dob } = req.body;
+      const { firstName, lastName, role, dob } = req.body;
 
       const user = await User.findByIdAndUpdate(
         userId,
-        { firstName, lastName, dob },
+        { firstName, lastName, role, dob },
         { new: true }
       );
 

@@ -18,7 +18,7 @@ app.get("/test", async (req: Request, res: Response) => {
 });
 
 app.use("/admin", AdminRoute);
-app.use("/user", UserRoute);
+app.use("/users", UserRoute);
 
 app.listen(5001, () => {
   console.log("server started on Port 5001");
