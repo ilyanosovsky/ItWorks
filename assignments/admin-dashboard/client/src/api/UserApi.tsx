@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useAuth } from "@/auth/AuthProvider";
+import { useMemo } from "react";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -23,18 +24,23 @@ const api = axios.create({
 const useUserApi = () => {
   const { token } = useAuth();
 
-  const fetchAllUsers = async (): Promise<User[]> => {
-    try {
-      const response = await api.get("/users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return response.data.users;
-    } catch (error) {
-      throw new Error("Failed to fetch users");
-    }
-  };
+  const fetchAllUsers = useMemo(
+    () => async (): Promise<User[]> => {
+      if (!token) throw new Error("No token provided");
+      try {
+        const response = await api.get("/users", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        return response.data.users;
+      } catch (error) {
+        console.error("Error fetching users: ", error);
+        throw new Error("Failed to fetch users");
+      }
+    },
+    [token]
+  );
 
   const fetchUserById = async (userId: string): Promise<User> => {
     try {

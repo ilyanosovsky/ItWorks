@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import useUserApi from "@/api/UserApi";
 import { User } from "@/api/UserApi";
+import { DataTable } from "@/components/DataTable";
+import { columns } from "@/components/Columns";
 
 const DashboardPage = () => {
   const { fetchAllUsers } = useUserApi();
@@ -8,48 +10,31 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const loadUsers = async () => {
-      try {
-        const users = await fetchAllUsers();
-        setUsers(users);
-        setLoading(false);
-      } catch (error) {
-        setError("Failed to fetch users");
-        setLoading(false);
-      }
-    };
+  const fetchUsers = useCallback(async () => {
+    console.log("Fetching users...");
+    try {
+      const usersData = await fetchAllUsers();
+      setUsers(usersData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Fetch users error: ", error);
+      setError("Failed to fetch users");
+      setLoading(false);
+    }
+  }, [fetchAllUsers]);
 
-    loadUsers();
-  }, []);
+  useEffect(() => {
+    console.log("useEffect called");
+    if (fetchUsers) {
+      fetchUsers();
+    }
+  }, [fetchUsers]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   return (
-    <div>
-      <h1>Users</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Date of Birth</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.email}</td>
-              <td>{user.role}</td>
-              <td>{user.dob}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container mx-auto py-10">
+      <DataTable columns={columns} data={users} />
     </div>
   );
 };
