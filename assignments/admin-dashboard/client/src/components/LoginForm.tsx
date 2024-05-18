@@ -32,7 +32,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="font-bold hover:text-orange-500 hover:bg-white"
+          className="font-bold text-base hover:text-orange-500 hover:bg-white"
         >
           Log In
         </Button>

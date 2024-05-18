@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import EditUserForm from "@/components/EditUserForm";
 import { useState } from "react";
+import ConfirmDialog from "@/components/ConfirmDialog";
+import { toast } from "@/components/ui/use-toast";
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -116,13 +118,26 @@ export const columns: ColumnDef<User>[] = [
       const { deleteUser } = useUserApi();
       const { setUsers } = useUsers();
       const [isEditOpen, setIsEditOpen] = useState(false);
+      const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
       const handleDelete = async () => {
         try {
           await deleteUser(user._id);
           setUsers((prevUsers) => prevUsers.filter((u) => u._id !== user._id));
+          toast({
+            title: "User deleted",
+            description: "The user has been successfully deleted.",
+            variant: "default",
+          });
         } catch (error) {
-          console.error("Failed to delete user", error);
+          toast({
+            title: "Failed to delete user",
+            description:
+              error instanceof Error
+                ? error.message
+                : "An unexpected error occurred.",
+            variant: "destructive",
+          });
         }
       };
 
@@ -147,7 +162,7 @@ export const columns: ColumnDef<User>[] = [
               <DropdownMenuItem onClick={() => setIsEditOpen(true)}>
                 Edit User
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={handleDelete}>
+              <DropdownMenuItem onClick={() => setIsConfirmOpen(true)}>
                 Delete User
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -157,6 +172,13 @@ export const columns: ColumnDef<User>[] = [
             setIsOpen={setIsEditOpen}
             user={user}
             onUserUpdated={handleUserUpdated}
+          />
+          <ConfirmDialog
+            isOpen={isConfirmOpen}
+            setIsOpen={setIsConfirmOpen}
+            onConfirm={handleDelete}
+            title="Delete User"
+            description="Are you sure you want to delete this user? This action cannot be undone."
           />
         </>
       );
