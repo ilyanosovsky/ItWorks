@@ -10,12 +10,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useTranslation } from "react-i18next";
 
 interface LoginFormProps {
   onLogin: (username: string, password: string) => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+  const { t } = useTranslation();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const username = (
@@ -34,7 +36,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           variant="ghost"
           className="font-bold text-base hover:text-orange-500 hover:bg-white"
         >
-          Log In
+          {t("nav.login")}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
