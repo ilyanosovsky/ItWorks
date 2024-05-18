@@ -1,8 +1,8 @@
 import React from 'react';
-import DialogForm from './DialogForm';
 import { loginAdmin } from '../api/AdminApi';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
+import LoginForm from './LoginForm';
 
 interface LoginProps {
   onLoginSuccess: () => void;
@@ -30,7 +30,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   };
 
   return (
-    <DialogForm onLogin={handleLogin} />
+    <LoginForm onLogin={handleLogin} />
   );
 };
 

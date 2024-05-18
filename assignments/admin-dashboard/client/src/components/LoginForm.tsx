@@ -11,11 +11,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-interface DialogFormProps {
+interface LoginFormProps {
   onLogin: (username: string, password: string) => void;
 }
 
-const DialogForm: React.FC<DialogFormProps> = ({ onLogin }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const username = (
@@ -66,4 +66,4 @@ const DialogForm: React.FC<DialogFormProps> = ({ onLogin }) => {
   );
 };
 
-export default DialogForm;
+export default LoginForm;
