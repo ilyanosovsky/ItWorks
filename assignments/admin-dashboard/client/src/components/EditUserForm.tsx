@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useUserApi, { User } from "@/api/UserApi";
+import { toast } from "@/components/ui/use-toast";
 
 interface EditUserFormProps {
   isOpen: boolean;
@@ -19,7 +20,12 @@ interface EditUserFormProps {
   onUserUpdated: (updatedUser: User) => void;
 }
 
-const EditUserForm: React.FC<EditUserFormProps> = ({ isOpen, setIsOpen, user, onUserUpdated }) => {
+const EditUserForm: React.FC<EditUserFormProps> = ({
+  isOpen,
+  setIsOpen,
+  user,
+  onUserUpdated,
+}) => {
   const { updateUser } = useUserApi();
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
@@ -41,6 +47,17 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ isOpen, setIsOpen, user, on
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Validation logic
+    if (firstName.trim() === "" || lastName.trim() === "") {
+      toast({
+        title: "Validation error",
+        description: "First name and last name cannot be empty.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
       const updatedUser = await updateUser(user._id, {
         firstName,
@@ -52,8 +69,20 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ isOpen, setIsOpen, user, on
       });
       setIsOpen(false);
       onUserUpdated(updatedUser);
+      toast({
+        title: "User updated",
+        description: "The user has been successfully updated.",
+        variant: "default",
+      });
     } catch (error) {
-      console.error("Failed to update user", error);
+      toast({
+        title: "Failed to update user",
+        description:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -72,7 +101,9 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ isOpen, setIsOpen, user, on
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Edit User</DialogTitle>
-            <DialogDescription>Update the details of the user</DialogDescription>
+            <DialogDescription>
+              Update the details of the user
+            </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
@@ -147,7 +178,9 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ isOpen, setIsOpen, user, on
           </div>
           <DialogFooter>
             <Button type="submit">Save</Button>
-            <Button type="button" variant="outline" onClick={handleReset}>Reset</Button>
+            <Button type="button" variant="outline" onClick={handleReset}>
+              Reset
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>

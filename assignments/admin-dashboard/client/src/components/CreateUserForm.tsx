@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import useUserApi, { User } from "@/api/UserApi";
+import { toast } from "@/components/ui/use-toast";
 
 interface CreateUserFormProps {
   isOpen: boolean;
@@ -51,8 +52,17 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({
       setRole("");
       setIsOpen(false);
       onUserCreated(newUser);
+      toast({
+        title: "User created",
+        description: "The user has been successfully created.",
+        variant: "default",
+      });
     } catch (error) {
-      console.error("Failed to create user", error);
+      toast({
+        title: "Failed to create user",
+        description: error instanceof Error ? error.message : "An unexpected error occurred.",
+        variant: "destructive",
+      });
     }
   };
 
