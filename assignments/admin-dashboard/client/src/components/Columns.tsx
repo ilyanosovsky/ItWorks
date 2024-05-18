@@ -2,9 +2,9 @@ import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@/api/UserApi";
 import useUserApi from "@/api/UserApi";
 import { useUsers } from "@/context/UserProvider";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Button } from "@/components/ui/button"
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+import EditUserForm from "@/components/EditUserForm";
+import { useState } from "react";
 
 export const columns: ColumnDef<User>[] = [
   {
@@ -48,7 +50,7 @@ export const columns: ColumnDef<User>[] = [
           First Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -62,7 +64,7 @@ export const columns: ColumnDef<User>[] = [
           Last Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -76,7 +78,7 @@ export const columns: ColumnDef<User>[] = [
           Email
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -90,7 +92,7 @@ export const columns: ColumnDef<User>[] = [
           Role
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -104,7 +106,7 @@ export const columns: ColumnDef<User>[] = [
           Date of Birth
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -113,6 +115,7 @@ export const columns: ColumnDef<User>[] = [
       const user = row.original;
       const { deleteUser } = useUserApi();
       const { setUsers } = useUsers();
+      const [isEditOpen, setIsEditOpen] = useState(false);
 
       const handleDelete = async () => {
         try {
@@ -122,23 +125,41 @@ export const columns: ColumnDef<User>[] = [
           console.error("Failed to delete user", error);
         }
       };
- 
+
+      const handleUserUpdated = (updatedUser: User) => {
+        setUsers((prevUsers) =>
+          prevUsers.map((u) => (u._id === updatedUser._id ? updatedUser : u))
+        );
+      };
+
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Edit User</DropdownMenuItem>
-            <DropdownMenuItem onClick={handleDelete}>Delete User</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      )
+        <>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => setIsEditOpen(true)}>
+                Edit User
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleDelete}>
+                Delete User
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <EditUserForm
+            isOpen={isEditOpen}
+            setIsOpen={setIsEditOpen}
+            user={user}
+            onUserUpdated={handleUserUpdated}
+          />
+        </>
+      );
     },
   },
 ];
