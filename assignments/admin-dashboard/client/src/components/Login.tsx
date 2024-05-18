@@ -1,8 +1,8 @@
-import React from 'react';
-import { loginAdmin } from '../api/AdminApi';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/AuthProvider';
-import LoginForm from './LoginForm';
+import React from "react";
+import { loginAdmin } from "../api/AdminApi";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthProvider";
+import LoginForm from "./LoginForm";
 import { toast } from "@/components/ui/use-toast";
 
 interface LoginProps {
@@ -23,7 +23,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
         variant: "default",
       });
       onLoginSuccess();
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (error) {
       if (error instanceof Error) {
         toast({
@@ -41,9 +41,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     }
   };
 
-  return (
-    <LoginForm onLogin={handleLogin} />
-  );
+  return <LoginForm onLogin={handleLogin} />;
 };
 
 export default Login;

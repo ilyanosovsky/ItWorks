@@ -12,10 +12,7 @@ const DashboardPage = () => {
 
   return (
     <div className="w-full py-10 px-10">
-      <DataTable
-        columns={columns}
-        data={users}
-      />
+      <DataTable columns={columns} data={users} />
     </div>
   );
 };

@@ -7,8 +7,7 @@ import { AuthProvider } from "./auth/AuthProvider";
 import { UserProvider } from "./context/UserProvider";
 import { ToastProvider } from "@/components/ui/toast";
 import { Toaster } from "@/components/ui/toaster";
-import "./i18n/index";
-import './i18n';
+import "./i18n";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

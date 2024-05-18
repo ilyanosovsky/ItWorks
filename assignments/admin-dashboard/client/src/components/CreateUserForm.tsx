@@ -60,7 +60,10 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({
     } catch (error) {
       toast({
         title: "Failed to create user",
-        description: error instanceof Error ? error.message : "An unexpected error occurred.",
+        description:
+          error instanceof Error
+            ? error.message
+            : "An unexpected error occurred.",
         variant: "destructive",
       });
     }

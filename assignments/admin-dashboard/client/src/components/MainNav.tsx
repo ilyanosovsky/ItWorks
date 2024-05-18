@@ -31,6 +31,7 @@ const MainNav = () => {
   const handleUserCreated = (newUser: User) => {
     setIsOpen(false);
     setUsers((prevUsers) => [...prevUsers, newUser]);
+    console.log(fetchUsers);
   };
   return (
     <div className="flex items-center">
@@ -53,7 +54,7 @@ const MainNav = () => {
         <Login onLoginSuccess={handleLoginSuccess} />
       )}
       <DropdownMenu>
-        <DropdownMenuTrigger className="font-bold text-base hover:text-orange-500 hover:bg-white">
+        <DropdownMenuTrigger className="font-bold text-base hover:text-orange-500 hover:bg-white ml-3">
           {t("nav.language")}
         </DropdownMenuTrigger>
         <DropdownMenuContent>

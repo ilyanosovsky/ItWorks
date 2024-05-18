@@ -6,11 +6,8 @@ export const UserController = {
     try {
       const { firstName, lastName, email, password, role, dob } = req.body;
 
-      console.log("Received request to create user:", req.body);
-
       // Validate input fields
       if (!email || !password) {
-        console.log("Validation failed: Email and password are required");
         return res
           .status(400)
           .json({ message: "Email and password are required" });
@@ -19,7 +16,6 @@ export const UserController = {
       // Check if user with the same email already exists
       const existingUser = await User.findOne({ email });
       if (existingUser) {
-        console.log("User with this email already exists:", email);
         return res
           .status(400)
           .json({ message: "User with this email already exists" });
@@ -35,17 +31,12 @@ export const UserController = {
         dob,
       });
 
-      console.log("Creating new user:", newUser);
-
       await newUser.save();
-
-      console.log("User created successfully:", newUser);
 
       res
         .status(201)
         .json({ message: "User created successfully", user: newUser });
     } catch (error) {
-      console.error("Error creating user:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   },
@@ -54,10 +45,8 @@ export const UserController = {
     try {
       console.log("Attempting to fetch users...");
       const users = await User.find();
-      console.log("Users fetched successfully:", users);
       res.json({ users });
     } catch (error) {
-      console.error("Error fetching users:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   },
@@ -71,7 +60,6 @@ export const UserController = {
       }
       res.json({ user });
     } catch (error) {
-      console.error("Error fetching user:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   },
@@ -93,7 +81,6 @@ export const UserController = {
 
       res.json({ message: "User updated successfully", user });
     } catch (error) {
-      console.error("Error updating user:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   },
@@ -109,7 +96,6 @@ export const UserController = {
 
       res.json({ message: "User deleted successfully" });
     } catch (error) {
-      console.error("Error deleting user:", error);
       res.status(500).json({ message: "Internal server error" });
     }
   },

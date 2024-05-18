@@ -1,4 +1,4 @@
-import mongoose, { Document } from 'mongoose';
+import mongoose, { Document } from "mongoose";
 
 export interface AdminDocument extends Document {
   username: string;
@@ -16,5 +16,5 @@ const adminSchema = new mongoose.Schema({
   },
 });
 
-const Admin = mongoose.model<AdminDocument>('Admin', adminSchema);
+const Admin = mongoose.model<AdminDocument>("Admin", adminSchema);
 export default Admin;
