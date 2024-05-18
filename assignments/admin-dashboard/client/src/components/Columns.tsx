@@ -1,5 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { User } from "@/api/UserApi";
+import useUserApi from "@/api/UserApi";
+import { useUsers } from "@/context/UserProvider";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
@@ -107,9 +109,19 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     id: "actions",
-    // cell: ({ row }) => {
-    //   const user = row.original
-    cell: () => {
+    cell: ({ row }) => {
+      const user = row.original;
+      const { deleteUser } = useUserApi();
+      const { setUsers } = useUsers();
+
+      const handleDelete = async () => {
+        try {
+          await deleteUser(user._id);
+          setUsers((prevUsers) => prevUsers.filter((u) => u._id !== user._id));
+        } catch (error) {
+          console.error("Failed to delete user", error);
+        }
+      };
  
       return (
         <DropdownMenu>
@@ -121,14 +133,9 @@ export const columns: ColumnDef<User>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            {/* <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(user)}
-            >
-              Copy payment ID
-            </DropdownMenuItem> */}
             <DropdownMenuSeparator />
             <DropdownMenuItem>Edit User</DropdownMenuItem>
-            <DropdownMenuItem>Delete User</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete User</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

@@ -61,7 +61,7 @@ const CreateUserForm: React.FC<CreateUserFormProps> = ({
       <DialogTrigger asChild>
         <Button
           variant="ghost"
-          className="font-bold hover:text-orange-500 hover:bg-white"
+          className="font-bold text-base hover:text-orange-500 hover:bg-white"
         >
           Create User
         </Button>
