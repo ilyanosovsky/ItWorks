@@ -3,6 +3,7 @@ import { loginAdmin } from '../api/AdminApi';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthProvider';
 import LoginForm from './LoginForm';
+import { toast } from "@/components/ui/use-toast";
 
 interface LoginProps {
   onLoginSuccess: () => void;
@@ -16,15 +17,26 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     try {
       const token = await loginAdmin(username, password);
       login(token, username);
-      console.log('Login successful! with token ->', token);
-      console.log('username ->', username);
+      toast({
+        title: "Login successful",
+        description: "You have successfully logged in.",
+        variant: "default",
+      });
       onLoginSuccess();
       navigate('/dashboard');
     } catch (error) {
       if (error instanceof Error) {
-        console.error('Login failed:', error.message);
+        toast({
+          title: "Login failed",
+          description: error.message,
+          variant: "destructive",
+        });
       } else {
-        console.error('Login failed:', error);
+        toast({
+          title: "Login failed",
+          description: "An unexpected error occurred.",
+          variant: "destructive",
+        });
       }
     }
   };

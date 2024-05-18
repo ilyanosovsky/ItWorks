@@ -5,13 +5,18 @@ import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./AppRoutes";
 import { AuthProvider } from "./auth/AuthProvider";
 import { UserProvider } from "./context/UserProvider";
+import { ToastProvider } from "@/components/ui/toast";
+import { Toaster } from "@/components/ui/toaster";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
         <UserProvider>
-          <AppRoutes />
+          <ToastProvider>
+            <AppRoutes />
+            <Toaster />
+          </ToastProvider>
         </UserProvider>
       </AuthProvider>
     </Router>

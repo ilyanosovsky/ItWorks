@@ -5,8 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Link, useNavigate } from "react-router-dom";
-import { Separator } from "./ui/separator";
+import { useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useAuth } from "@/auth/AuthProvider";
 
@@ -26,12 +25,6 @@ const UsernameMenu = () => {
         {username}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem>
-          <Link to="/admin-profile" className="font-bold hover:text-orange-500">
-            Admin Profile
-          </Link>
-        </DropdownMenuItem>
-        <Separator />
         <DropdownMenuItem>
           <Button
             onClick={handleLogout}
