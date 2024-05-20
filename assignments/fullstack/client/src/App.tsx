@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { UserProvider } from './context/UserContext';
 import LoginForm from './components/LoginForm';
 import DashboardPage from './pages/DashboardPage';
 import ViewUsersPage from './pages/ViewUsersPage';
@@ -20,7 +19,6 @@ const GuardRoute: React.FC<GuardRouteProps> = ({ children }) => {
 
 const App: React.FC = () => {
   return (
-    <UserProvider>
       <Router>
         <Routes>
           <Route path="/login" element={<LoginForm />} />
@@ -39,7 +37,6 @@ const App: React.FC = () => {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
-    </UserProvider>
   );
 };
 
