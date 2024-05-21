@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import DeleteConfirmationModal from '../components/DeleteConfirmationModal';
-import Filter from '../components/Filter';
-import SortSelect from '../components/SortSelect';
-import PaginationControls from '../components/PaginationControls';
-import { useTranslation } from 'react-i18next';
-import { initializeUsers } from '../service/users';
-import { useAppDispatch, useAppSelector } from '../store';
-import { setUsers, setUsersPaginated, deleteUserById as removeFromReduxUsers } from '../store/slices/users';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
+import Filter from "../components/Filter";
+import SortSelect from "../components/SortSelect";
+import PaginationControls from "../components/PaginationControls";
+import { useTranslation } from "react-i18next";
+import { initializeUsers } from "../service/users";
+import { useAppDispatch, useAppSelector } from "../store";
+import {
+  setUsers,
+  setUsersPaginated,
+  deleteUserById as removeFromReduxUsers,
+  setCurrentUserById,
+} from "../store/slices/users";
 
 const ViewUsersPage: React.FC = () => {
-  const [filter, setFilter] = useState('');
-  const [sortKey, setSortKey] = useState<'firstName' | 'email'>('firstName');
+  const [filter, setFilter] = useState("");
+  const [sortKey, setSortKey] = useState<"firstName" | "email">("firstName");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState<string | null>(null);
   const dispatch = useAppDispatch();
@@ -62,15 +67,21 @@ const ViewUsersPage: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4 max-w-2xl bg-gray-100 dark:bg-darkBackground">
-      <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-darkText">{t('users.title')}</h1>
-      <Filter value={filter} onChange={(e) => setFilter(e.target.value)} placeholder={t('users.filter')} />
+      <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-darkText">
+        {t("users.title")}
+      </h1>
+      <Filter
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        placeholder={t("users.filter")}
+      />
       <SortSelect
         sortKey={sortKey}
-        onChange={(e) => setSortKey(e.target.value as 'firstName' | 'email')}
-        label={t('users.sortBy')}
+        onChange={(e) => setSortKey(e.target.value as "firstName" | "email")}
+        label={t("users.sortBy")}
         options={[
-          { value: 'firstName', label: t('users.firstName') },
-          { value: 'email', label: t('users.email') },
+          { value: "firstName", label: t("users.firstName") },
+          { value: "email", label: t("users.email") },
         ]}
       />
       <ul className="space-y-2">
@@ -82,20 +93,30 @@ const ViewUsersPage: React.FC = () => {
             <div>
               <span className="font-bold text-gray-900 dark:text-darkText">
                 {user.firstName} {user.lastName}
-              </span>{' '}
+              </span>{" "}
               - {user.email}
             </div>
             <div>
               <Link to={`/edit-user/${user.id}`}>
                 <button className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 mr-2">
-                  {t('users.edit')}
+                  {t("users.edit")}
                 </button>
+              </Link>
+              <Link
+                className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 mr-2"
+                role="button"
+                to={`/edit-user/${user.id}`}
+                onClick={() => {
+                  dispatch(setCurrentUserById(user.id));
+                }}
+              >
+                Button1
               </Link>
               <button
                 onClick={() => openModal(user.id)}
                 className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
               >
-                {t('users.delete')}
+                {t("users.delete")}
               </button>
             </div>
           </li>
@@ -106,9 +127,13 @@ const ViewUsersPage: React.FC = () => {
         totalPages={totalPages}
         onPrevious={() => setPage((prev) => Math.max(prev - 1, 1))}
         onNext={() => setPage((prev) => (prev < totalPages ? prev + 1 : prev))}
-        label={t('users.page')}
+        label={t("users.page")}
       />
-      <DeleteConfirmationModal isOpen={isModalOpen} onClose={closeModal} onConfirm={confirmDelete} />
+      <DeleteConfirmationModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={confirmDelete}
+      />
     </div>
   );
 };
