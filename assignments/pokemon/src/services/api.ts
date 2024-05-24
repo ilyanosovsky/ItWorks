@@ -23,7 +23,7 @@ export interface PokemonDetails {
 }
 
 export const fetchPokemons = async (): Promise<PokemonApiResponse[]> => {
-  const response = await axios.get<{ results: PokemonApiResponse[] }>(`${API_URL}?limit=10`);
+  const response = await axios.get<{ results: PokemonApiResponse[] }>(`${API_URL}?limit=50`);
   return response.data.results;
 };
 
