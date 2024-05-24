@@ -1,0 +1,15 @@
+{
+    "home": {
+      "title": "Manage users as Admin",
+      "description": "Just that easy"
+    },
+    "footer": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "nav": {
+      "view": "View Users",
+      "login": "Log In",
+      "language": "Language"
+    }
+  }
