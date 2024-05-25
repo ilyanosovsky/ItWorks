@@ -14,8 +14,8 @@ const PokemonCard: React.FC<PokemonCardProps> = ({
   power,
 }) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg">
-      <img className="w-full" src={image} alt={name} />
+    <div className="flex max-w-sm rounded overflow-hidden bg-slate-500 shadow-lg">
+      <img className="w-full max-w-48" src={image} alt={name} />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-2">{name}</div>
         <p className="text-gray-700 text-base">Type: {type}</p>
